@@ -8,7 +8,7 @@ const makeTransaction = (transaction) => {
     setTimeout(() => {
       const canProcess = Math.random() > 0.3;
       if (canProcess) {
-        resolve(transaction);
+        resolve({ id: transaction.id, time: delay });
       } else {
         reject(transaction.id);
       }
@@ -16,8 +16,8 @@ const makeTransaction = (transaction) => {
   });
 };
 
-const logSuccess = ({ id, amount }) => {
-  console.log(`Transaction ${id} processed in ${amount}ms`);
+const logSuccess = ({ id, time }) => {
+  console.log(`Transaction ${id} processed in ${time}ms`);
 };
 
 const logError = (id) => {
@@ -41,6 +41,29 @@ const logError = (id) => {
 
 // const logSuccess = (arr) => {
 //   console.log(`Transaction ${arr[0]} processed in ${arr[1]}ms`);
+// };
+
+// const logError = (id) => {
+//   console.warn(`Error processing transaction ${id}. Please try again later.`);
+// };
+
+// ТРЕТИЙ СПОСОБ
+// const makeTransaction = (transaction) => {
+//   const delay = randomIntegerFromInterval(200, 500);
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       const canProcess = Math.random() > 0.3;
+//       if (canProcess) {
+//         resolve([transaction.id, delay]);
+//       } else {
+//         reject(transaction.id);
+//       }
+//     }, delay);
+//   });
+// };
+
+// const logSuccess = ([id, time]) => {
+//   console.log(`Transaction ${id} processed in ${time}ms`);
 // };
 
 // const logError = (id) => {
